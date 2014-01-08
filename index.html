@@ -3,9 +3,16 @@
 		<title>CAH</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/deck.js"></script>
+		<script type="text/javascript" src="js/loading.js"></script>
 		<script type="text/javascript" src="js/setup.js"></script>
+		<script type="text/javascript" src="js/game.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
 	</head>
 	<body>
+		<div id="loading" class="cover_message">
+			Loading...
+		</div>
 		<div id="setup">
 			<h1>Players:</h1>
 			<div id="player_list_setup">
@@ -13,7 +20,30 @@
 				<div><input type="text" class="player_name"></div>
 			</div>
 			<div><button onclick="addPlayer()">Add Player</button></div>
-			<div><button onclick="startGame()">Start Game</button></div>
+			<div><button onclick="setupGame()">Start Game</button></div>
+		</div>
+		<div id="game">
+			<div id="menu">
+				<button onclick="showScore()">Score Board</button>
+			</div>
+			<div id="black_card">
+			</div>
+			<div id="white_cards">
+			</div>
+		</div>
+		<div id="pass" class="cover_message">
+			Please pass too <span id="pass_to"></span><br />
+			<button onclick="passed()">Ready</button>
+		</div>
+		<div id="win" class="cover_message">
+			Congratulations <span id="winner"></span><br />
+			<button onclick="newRound()">Next Round</button>
+		</div>
+		<div id="score_board" class="cover_message">
+			Score:<br />
+			<div id="scores">
+			</div>
+			<button onclick="closeScore()">Close</button>
 		</div>
 	</body>
 </html>

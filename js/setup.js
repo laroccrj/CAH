@@ -1,12 +1,18 @@
 var players = new Array();
+var cur_black_player = 0;
+var cur_white_player = 1;
+var white_cards;
+var black_cards;
 
 function addPlayer()
 {
 	$('#player_list_setup div:last').after('<div><input type="text" class="player_name"></div>');
 }
 
-function startGame()
+function setupGame()
 {
+	startLoading();
+
 	var in_players = $('#player_list_setup .player_name');
 	
 	for(var i = 0; i < in_players.length; i++)
@@ -26,18 +32,43 @@ function startGame()
 	}
 	
 	getWhite();
+	getBlack();
 }
 
 function getWhite()
 {
 	$.ajax({
 	  dataType: "json",
-	  url: "http://rlarocca.com/CAH/php/getWhite.php",
+	  url: "php/getWhite.php",
 	  success: setWhite
 	});
 }
 
 function setWhite(data)
 {
-	console.log(data);
+	white_cards = new deck(data);
+	
+	if(black_cards)
+	{
+		startGame();
+	}
+}
+
+function getBlack()
+{
+	$.ajax({
+	  dataType: "json",
+	  url: "php/getBlack.php",
+	  success: setBlack
+	});
+}
+
+function setBlack(data)
+{
+	black_cards = new deck(data);
+	
+	if(white_cards)
+	{
+		startGame();
+	}
 }

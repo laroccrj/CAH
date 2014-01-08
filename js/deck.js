@@ -14,12 +14,21 @@ function deck(cards)
 		
 		var rand = Math.floor(Math.random() * this.cards.length);
 		var card = this.cards[rand];
-		
-		for(var i = rand; i < this.cards.length - 1; i++)
-		{
-			this.cards[i] = this.cards[i + 1];
-		}
+		this.cards.splice(rand, 1);
 		
 		return card;
+	}
+	
+	this.drawCards = drawCards;
+	function drawCards(number)
+	{
+		var cards = new Array();
+		
+		for(var i = 0; i < number; i++)
+		{
+			cards.push(this.drawCard());
+		}
+		
+		return cards;
 	}
 }
