@@ -5,7 +5,7 @@ function startGame()
 {
 	for(var i = 0; i < players.length; i++)
 	{
-		var cards = white_cards.drawCards(6);
+		var cards = white_cards.drawCards(5);
 		players[i].cards = cards;
 	}
 
@@ -21,7 +21,7 @@ function setWhiteCards(cards)
 	
 	for(var i = 0; i < cards.length; i++)
 	{
-		var card = "<div class='card'>" + cards[i] + "<button onclick='playCard(" + i + ")'>Play</button></div>";
+		var card = "<div class='card'>" + cards[i] + "<div class='button' onclick='playCard(" + i + ")'>Play</div><image src='images/WhiteCard.png'></div>";
 		$("#white_cards").append(card);
 	}
 	
@@ -62,7 +62,7 @@ function startSelect()
 	
 	for(var i = 0; i < played_cards.length; i++)
 	{
-		var card = "<div class='card'>" + played_cards[i].card + "<button onclick='select(" + played_cards[i].player + ")'>Select</button></div>";
+		var card = "<div class='card'>" + played_cards[i].card + "<div class='button' onclick='select(" + played_cards[i].player + ")'>Select</div><image src='images/WhiteCard.png'></div>";
 		$("#white_cards").append(card);
 	}
 	
@@ -94,7 +94,7 @@ function newRound()
 {
 	$("#win").hide();
 	pass(players[cur_white_player]);
-	$("#black_card").text(black_cards.drawCard());
+	$("#black_card_txt").text(black_cards.drawCard());
 	setWhiteCards(players[cur_white_player].cards);
 	played_cards = new Array();
 }

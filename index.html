@@ -16,23 +16,26 @@
 		<div id="setup">
 			<h1>Players:</h1>
 			<div id="player_list_setup">
-				<div><input type="text" class="player_name"></div>
-				<div><input type="text" class="player_name"></div>
+				<div><input type="text" class="player_name" value="Player 1"></div>
+				<div><input type="text" class="player_name" value="Player 2"></div>
 			</div>
 			<div><button onclick="addPlayer()">Add Player</button></div>
 			<div><button onclick="setupGame()">Start Game</button></div>
 		</div>
 		<div id="game">
-			<div id="menu">
+			<div id="menu" class="layer">
 				<button onclick="showScore()">Score Board</button>
 			</div>
-			<div id="black_card">
+			<div id="black_card" class="card layer">
+				<div id="black_card_txt">
+				</div>
+				<image src="images/BlackCard.png">
 			</div>
-			<div id="white_cards">
+			<div id="white_cards" class="layer">
 			</div>
 		</div>
 		<div id="pass" class="cover_message">
-			Please pass too <span id="pass_to"></span><br />
+			Please pass to <span id="pass_to"></span><br />
 			<button onclick="passed()">Ready</button>
 		</div>
 		<div id="win" class="cover_message">
