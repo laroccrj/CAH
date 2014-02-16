@@ -31,4 +31,10 @@ function deck(cards)
 		
 		return cards;
 	}
+	
+	this.discard = discard;
+	function discard(card)
+	{
+		this.discarded.push(card);
+	}
 }

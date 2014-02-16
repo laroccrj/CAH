@@ -6,7 +6,8 @@ var black_cards;
 
 function addPlayer()
 {
-	$('#player_list_setup div:last').after('<div><input type="text" class="player_name"></div>');
+	$('#player_list_setup div:last').after('<div><input type="text" class="player_name autoClear" value="" default="New Player"></div>');
+	checkInputs();
 }
 
 function setupGame()

@@ -1,0 +1,57 @@
+@media screen and (max-width: 1024px)
+{
+	.card .button 
+	{
+		display:block;
+		padding:25px;
+		top:125px;
+	}
+	.cover_message button
+	{
+		border:none;
+		background:none;
+		background-color:#fff;
+		font-size:48px;
+		font-weight:bold;
+		margin-top:20px;
+		color:#000;
+	}
+	#setup input
+	{
+		padding:15px;
+	}
+	#setup .button
+	{
+		padding:25px;
+	}
+}
+@media screen and (max-width: 360px)
+{
+	.cover_message
+	{
+		font-size:36px;
+	}
+	.cover_message button
+	{
+		font-size:36px;
+	}
+	.card
+	{
+		margin-left:auto;
+		margin-right:auto;
+	}
+	#white_cards .card
+	{
+		margin-left:auto;
+		margin-right:auto;
+		float:none;
+	}
+	#menu
+	{
+		position:static;
+	}
+	#score_board
+	{
+		width:100%;
+	}
+}

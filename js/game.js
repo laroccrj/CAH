@@ -5,12 +5,13 @@ function startGame()
 {
 	for(var i = 0; i < players.length; i++)
 	{
-		var cards = white_cards.drawCards(5);
+		var cards = white_cards.drawCards(10);
 		players[i].cards = cards;
 	}
 
 	$("#setup").hide();
 	newRound();
+	updateScore();
 	$("#game").show();
 	stopLoading();
 }
@@ -39,6 +40,7 @@ function playCard(number)
 		player : cur_white_player
 	});
 	
+	white_cards.discard(card);
 	cur_white_player++;
 	
 	if(cur_white_player >= players.length)
@@ -58,6 +60,7 @@ function playCard(number)
 
 function startSelect()
 {
+	shufflePlayed();
 	$("#white_cards").html('');
 	
 	for(var i = 0; i < played_cards.length; i++)
@@ -66,7 +69,7 @@ function startSelect()
 		$("#white_cards").append(card);
 	}
 	
-	pass(players[cur_black_player]);
+	pass_select(players[cur_black_player]);
 }
 
 function select(player)
@@ -87,6 +90,7 @@ function select(player)
 		cur_white_player = 0;
 	}
 	
+	updateScore();
 	win(players[player]);
 }
 
@@ -94,7 +98,9 @@ function newRound()
 {
 	$("#win").hide();
 	pass(players[cur_white_player]);
-	$("#black_card_txt").text(black_cards.drawCard());
+	var card = black_cards.drawCard();
+	$("#black_card_txt").text(card);
+	black_cards.discard(card);
 	setWhiteCards(players[cur_white_player].cards);
 	played_cards = new Array();
 }
@@ -105,12 +111,7 @@ function win(player)
 	$("#win").show();
 }
 
-function closeScore()
-{
-	$("#score_board").hide();
-}
-
-function showScore()
+function updateScore()
 {
 	var table = "<table>";
 	
@@ -118,11 +119,41 @@ function showScore()
 	{
 		var player = players[i];
 		
-		table += "<tr><td>" + player.name + "</td><td>" + player.score + "</td></tr>";
+		table += "<tr><td>" + player.name + ":</td><td>" + player.score + "</td></tr>";
 	}
 	
 	table += "</table>";
 	
 	$("#scores").html(table);
-	$("#score_board").show();
+}
+
+function scoreboard()
+{
+	var scores = $("#scores");
+	
+	if(scores.is(":visible"))
+	{
+		scores.hide();
+		$("#score_board_arrow").attr('src', 'images/downArrow.png');
+	}
+	else
+	{
+		scores.show();
+		$("#score_board_arrow").attr('src', 'images/upArrow.png');
+	}
+}
+
+function shufflePlayed()
+{
+	var newSet = new Array();
+	var num = played_cards.length;
+	
+	for(var i = 0; i < num; i++)
+	{
+		var ran = Math.floor(Math.random() * played_cards.length);
+		newSet.push(played_cards[ran]);
+		played_cards.splice(ran, 1);
+	}
+	
+	played_cards = newSet;
 }

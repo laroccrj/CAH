@@ -23,6 +23,12 @@ function pass(player)
 	$("#pass").show();
 }
 
+function pass_select(player)
+{
+	$("#pass_to").text(player.name + " to read the cards");
+	$("#pass").show();
+}
+
 function passed()
 {
 	$("#pass").hide();

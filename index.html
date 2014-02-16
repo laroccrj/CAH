@@ -1,30 +1,63 @@
+<!DOCTYPE html> 
 <html>
 	<head>
-		<title>CAH</title>
+		<title>POM</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/autoClearInput.js"></script>
 		<script type="text/javascript" src="js/deck.js"></script>
 		<script type="text/javascript" src="js/loading.js"></script>
 		<script type="text/javascript" src="js/setup.js"></script>
 		<script type="text/javascript" src="js/game.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/responsive.css">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 	</head>
 	<body>
 		<div id="loading" class="cover_message">
 			Loading...
 		</div>
 		<div id="setup">
-			<h1>Players:</h1>
-			<div id="player_list_setup">
-				<div><input type="text" class="player_name" value="Player 1"></div>
-				<div><input type="text" class="player_name" value="Player 2"></div>
+			<div id="title" class="block">
+				Papers<br />
+				Opposing<br />
+				Mankind<br />
 			</div>
-			<div><button onclick="addPlayer()">Add Player</button></div>
-			<div><button onclick="setupGame()">Start Game</button></div>
+			<div class="block">
+				<h1>Welcome</h1>
+				<p>
+					First thing you need to know, if you want to bitch at us for copying Cards Against Humanity, well no shit. The whole point of this is to copy Cards Against Humanity, check their FAQ, we are allowed to build this site as long as we don't gain revenue off of it, which we aren't. This game is to allow lazy people, like myself, to play CAH for free without having to print out and cut up the PDFs they give out.
+				</p>
+				<p>
+					I'll be the first to say, the actual card game is a lot more fun to play than our crappy website. So go support the sick people who came up with these cards and actually buy the game. They are an awesome company that sells a service, not a product. You can buy it at the <a href="http://cardsagainsthumanity.com/" target="_blank">Cards Against Humanity</a> website.
+				</p>
+				<p>
+					So to start a new game, just enter in your players names and click start game. If you are bad at explaining stuff, or your friends are terrible at comprehending what you say, you can see our explanation of the rules <a href="rules.html">here</a>.
+				</p>
+			</div>
+			<div class="block">
+				<h1>New Game</h1>
+				<h2>Set Your Players</h2>
+				<div id="player_list_setup">
+					<div><input type="text" class="player_name autoClear" value="" default="New Player"></div>
+					<div><input type="text" class="player_name autoClear" value="" default="New Player"></div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="button" onclick="addPlayer()">Add Player</div>
+			</div>
+			<div class="block">
+				<div class="button" onclick="setupGame()">Start Game</div>
+			</div>
 		</div>
 		<div id="game">
 			<div id="menu" class="layer">
-				<button onclick="showScore()">Score Board</button>
+				<div id="score_board" onclick="scoreboard()">
+					Score Board
+					<image class="arrow" id="score_board_arrow" src="images/downArrow.png">
+					<div id="scores">
+					</div>
+				</div>
 			</div>
 			<div id="black_card" class="card layer">
 				<div id="black_card_txt">
@@ -41,12 +74,6 @@
 		<div id="win" class="cover_message">
 			Congratulations <span id="winner"></span><br />
 			<button onclick="newRound()">Next Round</button>
-		</div>
-		<div id="score_board" class="cover_message">
-			Score:<br />
-			<div id="scores">
-			</div>
-			<button onclick="closeScore()">Close</button>
 		</div>
 	</body>
 </html>
